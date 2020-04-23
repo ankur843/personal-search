@@ -2,7 +2,7 @@
 
 ## Course Project for CSE 6242 at Georgia Tech
 
-#### How to use it?
+### How to use it?
 
 **You can run it in two ways:-** 
 
@@ -14,9 +14,9 @@
     ```
 
 
-#### 
+### Details about the project :- 
 
-The project consists of 3 main components: 
+**The project consists of 3 main components:**
 
 1. Image Recognition
 2. Document Clustering - code availabla in ```app/Map/Document Clusters``` and ```app/Map/Headlines```
