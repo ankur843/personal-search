@@ -16,7 +16,7 @@ export_file_url = 'https://drive.google.com/uc?export=download&id=1fYtwrNO6AtksA
 export_file_name = 'only-fruits-classifier.pkl'
 
 classes=['acerolas', 'apples', 'apricots', 'avocados', 'bananas', 'blackberries', 'blueberries', 'cantaloupes', 'cherries', 'coconuts', 'figs', 'grapefruits', 'grapes', 'guava', 'kiwifruit', 'lemons', 'limes', 'mangos', 'olives', 'oranges', 'passionfruit', 'peaches', 'pears', 'pineapples', 'plums', 'pomegranates', 'raspberries', 'strawberries', 'tomatoes', 'watermelons']
-path = Path("app")
+path = Path("__file__").parent
 
 templates = Jinja2Templates(directory='')
 
@@ -53,9 +53,11 @@ loop.close()
 
 @app.route('/')
 async def homepage(request):
-    template = "app/view/index.html"
-    context = {"request": request}
-    return templates.TemplateResponse(template, context)
+    # template = path / 'view' / 'index.html'
+    # context = {"request": request}
+    # return templates.TemplateResponse(template, context)
+    html_file = path / 'app/view' / 'index.html'
+    return HTMLResponse(html_file.open().read())
 
 
 @app.route('/analyze', methods=['POST'])
@@ -68,9 +70,11 @@ async def analyze(request):
 
 @app.route('/keywords')
 async def homepage(request):
-    template = "app/view/keywords.html"
-    context = {"request": request}
-    return templates.TemplateResponse(template, context)
+    # template = path / 'app/view' / 'keywords.html'
+    # context = {"request": request}
+    # return templates.TemplateResponse(template, context)
+    html_file = path / 'app/view' / 'keywords.html'
+    return HTMLResponse(html_file.open().read())
 
 @app.route('/graph_nodes')
 async def graph_nodes(request):
@@ -87,5 +91,6 @@ async def cluster_data(request):
     param=dict(request.query_params)
     return JSONResponse(mapgraphdata.cluster_data(param['keyword']))
 
-uvicorn.run(app=app, host='0.0.0.0', port=5000, log_level="info")
-
+if __name__ == '__main__':
+    if 'serve' in sys.argv:
+        uvicorn.run(app=app, host='0.0.0.0', port=5000, log_level="info")

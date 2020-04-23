@@ -1,15 +1,5 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import pandas as pd
 import json
-
-
-# In[13]:
-
 
 def graph_ideas(source="apples"):
     df=pd.read_csv("app/fruits_ideas.csv")
@@ -21,9 +11,6 @@ def graph_ideas(source="apples"):
     return a_json
 
 
-# In[14]:
-
-
 def map_data(source="apples"):
     df=pd.read_csv("app/fruits_data.csv")
     df_filtered=df[df['keyword']==source]
@@ -32,10 +19,6 @@ def map_data(source="apples"):
     js=df_filtered.to_json(orient='index')
     a_json = json.loads(js)
     return a_json
-
-
-# In[73]:
-
 
 def cluster_data(source="apples"):
     df_cluster=pd.read_csv("app/document clusters/"+source+".csv")
@@ -59,10 +42,6 @@ def cluster_data(source="apples"):
     js=df_filtered.to_json(orient='index')
     a_json = json.loads(js)
     return a_json
-
-
-# In[ ]:
-
 
 
 
