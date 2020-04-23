@@ -13,7 +13,7 @@ import mapgraphdata
 
 
 export_file_url = 'https://drive.google.com/uc?export=download&id=1fYtwrNO6AtksAzpqHo7oNpx3yJ_KEZkR'
-export_file_name = 'only-fruits-classifier.pkl'
+export_file_name = 'export.pkl'
 
 classes=['acerolas', 'apples', 'apricots', 'avocados', 'bananas', 'blackberries', 'blueberries', 'cantaloupes', 'cherries', 'coconuts', 'figs', 'grapefruits', 'grapes', 'guava', 'kiwifruit', 'lemons', 'limes', 'mangos', 'olives', 'oranges', 'passionfruit', 'peaches', 'pears', 'pineapples', 'plums', 'pomegranates', 'raspberries', 'strawberries', 'tomatoes', 'watermelons']
 path = Path("__file__").parent
@@ -25,6 +25,7 @@ app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Reques
 app.mount('/static', StaticFiles(directory='app/static'))
 
 async def download_file(url, dest):
+    print("Downloading the .pkl model file...")
     if dest.exists(): return
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
@@ -66,6 +67,7 @@ async def analyze(request):
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
     prediction = learn.predict(img)[0]
+    print (prediction)
     return JSONResponse({'result': str(prediction) })
 
 @app.route('/keywords')
