@@ -21,7 +21,7 @@
     ```
 
 
-### For Developers :- 
+### For Developers  
 
 **The project consists of 3 main components:**
 
