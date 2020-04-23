@@ -218,7 +218,7 @@
 				   
 				   	var loc = window.location;		
 					param="keyword="+keyword
-					urlstr=loc.protocol+loc.hostname+":"+loc.port+"/cluster?"+param;
+					urlstr=loc.protocol+"//"+loc.hostname+":"+loc.port+"/cluster?"+param;
 				
 					var xhrclust = new XMLHttpRequest();
 
@@ -257,7 +257,7 @@
 				
 					var loc = window.location;		
 					param="keyword="+keyword
-					urlstr=loc.protocol+loc.hostname+":"+loc.port+"/map_data?"+param;
+					urlstr=loc.protocol+"//"+loc.hostname+":"+loc.port+"/map_data?"+param;
 				
 					var xhrmp = new XMLHttpRequest();
 
@@ -284,7 +284,7 @@
 				
 					var loc = window.location;		
 					param="keyword="+keyword
-					urlstr=loc.protocol+loc.hostname+":"+loc.port+"/graph_nodes?"+param;
+					urlstr=loc.protocol+"//"+loc.hostname+":"+loc.port+"/graph_nodes?"+param;
 				
 					var xhr = new XMLHttpRequest();
 
@@ -292,6 +292,9 @@
 						if (xhr.readyState === 4) {
 						  dataset2=xhr.response;
 						  dataset3=JSON.parse(dataset2);
+						//   console.log(dataset3);
+						//   console.log(dataset2.responseText);
+
 						  if (Object.keys(dataset3).length==0){// this is ensure that there is graph even if result is empty
 							createGraph(temp_dataset,type,temp_keyword);
 						  }
