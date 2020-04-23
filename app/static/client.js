@@ -33,7 +33,11 @@ function analyze() {
       el("result-label").innerHTML = `Got it! You're searching for ${response["result"]}`;
       setTimeout(function(){ alert("Hello"); }, 10000);
       // window.location.replace(loc.protocol+"/keywords?keyword=".concat(response["result"]));
-      window.location.replace(`${loc.protocol}//${loc.hostname}:${loc.port}/keywords?keyword=`.concat(response["result"]));
+      // window.location.replace(`${loc.protocol}//${loc.hostname}:${loc.port}/keywords?keyword=`.concat(response["result"]));
+      var xhr = new XMLHttpRequest();
+      var loc = window.location;
+      xhr.open("GET", `${loc.protocol}//${loc.hostname}:${loc.port}/keywords?keyword=`.concat(response["result"]),
+      true);
     }
     el("analyze-button").innerHTML = "Search";
   };
