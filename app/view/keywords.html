@@ -218,7 +218,7 @@
 				   
 				   	var loc = window.location;		
 					param="keyword="+keyword
-					urlstr="http://"+loc.hostname+":"+loc.port+"/cluster?"+param;
+					urlstr=loc.protocol+loc.hostname+":"+loc.port+"/cluster?"+param;
 				
 					var xhrclust = new XMLHttpRequest();
 
@@ -257,7 +257,7 @@
 				
 					var loc = window.location;		
 					param="keyword="+keyword
-					urlstr="http://"+loc.hostname+":"+loc.port+"/map_data?"+param;
+					urlstr=loc.protocol+loc.hostname+":"+loc.port+"/map_data?"+param;
 				
 					var xhrmp = new XMLHttpRequest();
 
@@ -284,7 +284,7 @@
 				
 					var loc = window.location;		
 					param="keyword="+keyword
-					urlstr="http://"+loc.hostname+":"+loc.port+"/graph_nodes?"+param;
+					urlstr=loc.protocol+loc.hostname+":"+loc.port+"/graph_nodes?"+param;
 				
 					var xhr = new XMLHttpRequest();
 
