@@ -1,5 +1,6 @@
 var el = x => document.getElementById(x);
 
+
 function showPicker() {
   el("file-input").click();
 }
@@ -30,7 +31,9 @@ function analyze() {
     if (this.readyState === 4) {
       var response = JSON.parse(e.target.responseText);
       el("result-label").innerHTML = `Got it! You're searching for ${response["result"]}`;
-      window.location.replace("http://searchfruit.onrender.com/?keyword=".concat(response["result"]));
+      setTimeout(function(){ alert("Hello"); }, 10000);
+      // window.location.replace(loc.protocol+"/keywords?keyword=".concat(response["result"]));
+      window.location.replace(`${loc.protocol}//${loc.hostname}:${loc.port}/keywords?keyword=`.concat(response["result"]));
     }
     el("analyze-button").innerHTML = "Search";
   };
