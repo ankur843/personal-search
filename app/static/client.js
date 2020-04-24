@@ -31,12 +31,13 @@ function analyze() {
     if (this.readyState === 4) {
       var response = JSON.parse(e.target.responseText);
       el("result-label").innerHTML = `Got it! You're searching for ${response["result"]}`;
-      // console.log(`${loc.protocol}//${loc.hostname}:${loc.port}/keywords?keyword=`.concat(response["result"]));
-      window.location.replace(`${loc.protocol}//${loc.hostname}:${loc.port}/keywords?keyword=`.concat(response["result"]));
-      // var xhr = new XMLHttpRequest();
-      // var loc = window.location;
-      // loc.replace("GET", `${loc.protocol}//${loc.hostname}:${loc.port}/keywords?keyword=`.concat(response["result"]),
-      //   true);
+      // window.location.replace(`${loc.protocol}//${loc.hostname}:${loc.port}/keywords?keyword=`.concat(response["result"]));
+      
+      var delayInMilliseconds = 700; //1 second
+      setTimeout(function() {
+        window.location.replace(`${loc.protocol}//${loc.hostname}:${loc.port}/keywords?keyword=`.concat(response["result"]));
+      }, delayInMilliseconds);
+
     }
     el("analyze-button").innerHTML = "Search";
   };
